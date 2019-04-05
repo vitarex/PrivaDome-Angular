@@ -1,7 +1,4 @@
-# frontend
-
-This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
-version 5.2.0
+# PrivaDome Angulat
 
 # Getting started
 
@@ -23,8 +20,20 @@ docs/                        project docs and coding guides
 e2e/                         end-to-end tests
 src/                         project source code
 |- app/                      app components
+|  |- api/                   PrivaDome api service
 |  |- core/                  core module (singleton services and single-use components)
+|  |  |- authentication/     authentication services
+|  |  |- http/               HTTP services, such as an interceptor and cache
+|  |  |- login/              login service
+|  |- home/                  dashboard page module
+|  |  |- charttile/          chart based tile component
+|  |  |- numerictile/          numeric tile component
+|  |- login/                 login page module
+|  |- modules/               module settings page module
 |  |- shared/                shared module  (common components, directives and pipes)
+|  |  |- chartfactory/       tile creation factory service
+|  |- shell/                 common page shell for the subpages
+|  |- users/                 user settings page module
 |  |- app.component.*        app root component (shell)
 |  |- app.module.ts          app root module definition
 |  |- app-routing.module.ts  app routes
@@ -39,7 +48,7 @@ src/                         project source code
 |- polyfills.ts              polyfills needed by Angular
 +- test.ts                   unit tests entry point
 reports/                     test and coverage reports
-proxy.conf.js                backend proxy configuration
+proxy.conf.js                backend proxy configuration, configured to run with the PrivaDome Frontend and PrivaDome Core
 ```
 
 # Main tasks
@@ -140,3 +149,6 @@ Development, build and quality processes are based on [angular-cli](https://gith
 - [Updating dependencies and tools](docs/updating.md)
 - [Using a backend proxy for development](docs/backend-proxy.md)
 - [Browser routing](docs/routing.md)
+
+This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
+version 5.2.0
