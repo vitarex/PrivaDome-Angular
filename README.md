@@ -1,4 +1,6 @@
-# PrivaDome Angulat
+# PrivaDome Angular
+
+This is the Angular based frontend user interface for the [PrivaDome](https://privadome.eu) smart DNS service. This project is non-functioning by itself, it's just the webpage component of the [PrivaDome Frontend](https://github.com/vitarex/PrivaDome-Frontend). The PrivaDome Frontend comes with a packaged version of PrivaDome Angular.
 
 # Getting started
 
