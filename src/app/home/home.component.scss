@@ -1,0 +1,35 @@
+.container {
+  text-align: center;
+  padding: 1em;
+}
+
+.flexWrapper {
+  display: flex;
+}
+
+.wrapper {
+  width: 1220px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, 280px);
+  color: #444;
+  justify-content: center;
+  grid-auto-flow: dense;
+  grid-auto-rows: 55px;
+}
+
+.loaderSheet {
+  background-color: #fafafa;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+}
+
+.spinner {
+  margin: auto;
+  margin-top: 20vh;
+}

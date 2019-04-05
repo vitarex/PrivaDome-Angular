@@ -1,0 +1,103 @@
+@import "src/theme/theme-variables";
+
+mat-panel-title,
+mat-panel-description {
+  font-size: 1.2em;
+}
+
+.updateExpansion {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 2px 2px -2px rgba(0, 0, 0, 0.14), 0 1px 5px -5px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 8px;
+}
+
+.usersCard:last-child .updateExpansion {
+  box-shadow: none !important;
+}
+
+.userDetails {
+  margin-bottom: 0;
+  padding: 20px 0 0 3%;
+}
+
+.userTitle {
+  font-size: 1.6em;
+  margin-bottom: 0;
+}
+
+.userDescription {
+  margin-bottom: 0;
+  padding-left: 8px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.warnColor {
+  color: mat-color($app-warn);
+}
+
+.updateDescription {
+  margin-right: 10px;
+}
+
+.updateHeader {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: -32px;
+  margin-left: 70%;
+}
+
+.settingsItem {
+  font-size: 1.2em;
+  padding: 0 4px 0 4px;
+  height: auto;
+}
+
+mat-list {
+  padding: 0;
+}
+
+.settingsHeader {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.settingsHeader h2 {
+  margin-bottom: 8px;
+}
+
+.settingsCard {
+  padding: 0;
+  border-radius: 8px;
+}
+
+mat-panel-description {
+  text-align: right;
+  display: block;
+  margin-right: 30px;
+}
+
+mat-panel-title {
+  margin: auto;
+  margin-right: 16px;
+}
+
+.submitButton {
+  align-self: flex-end;
+}
+
+.deleteButton {
+  margin: 10px 0 20px 0;
+  float: right;
+}
+
+.errorMessage {
+  color: mat-color($app-warn);
+}
+
+.settingsLine {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+.settingsCard:last-of-type {
+  margin-bottom: 20px;
+}

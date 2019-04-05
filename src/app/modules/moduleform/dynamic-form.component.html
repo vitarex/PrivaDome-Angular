@@ -1,0 +1,52 @@
+<div [formGroup]="formGroup">
+    
+    <div [ngSwitch]="form.type" class="form-wrapper">
+        
+        <div *ngSwitchCase="'textbox'">
+            <mat-form-field appearance="outline" style="margin-bottom: -1em">
+                <mat-label>{{form.name}}</mat-label>
+                <input matInput [formControlName]="form.id"
+                [id]="form.id" [type]="form.type">
+                <mat-icon class="help-icon" *ngIf="form.description"
+                          matSuffix
+                          matTooltipPosition="right"
+                          [matTooltip]="form.description">
+                    help_outline
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        
+        <div *ngSwitchCase="'select'">
+            <mat-form-field appearance="outline" style="margin-bottom: -1em">
+                <mat-label>{{form.name}}</mat-label>
+                <mat-select [id]="form.id" [formControlName]="form.id">
+                    <mat-option *ngFor="let opt of form.options" [value]="opt">{{opt}}</mat-option>
+                </mat-select>
+                <mat-icon class="help-icon" *ngIf="form.description"
+                          matSuffix
+                          matTooltipPosition="right"
+                          [matTooltip]="form.description">
+                    help_outline
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        
+        <div *ngSwitchCase="'checkbox'">
+            <mat-form-field appearance="outline" class="checkbox-formfield">
+                <mat-label>{{form.name}}</mat-label>
+                <div fxLayout="column" class="checkbox-wrapper">
+                    <mat-checkbox class="checkbox-align" [formControlName]="form.id"></mat-checkbox>
+                </div>
+                <input matInput placeholder="input" style="display: none;">
+                <mat-icon class="help-icon" *ngIf="form.description"
+                          matSuffix
+                          matTooltipPosition="right"
+                          [matTooltip]="form.description">
+                    help_outline
+                </mat-icon>
+            </mat-form-field>
+        </div>
+
+    </div> 
+    <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+  </div>

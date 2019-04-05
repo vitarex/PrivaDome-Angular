@@ -1,0 +1,92 @@
+<div fxLayout="row" fxLayoutAlign="center" class="mat-typography">
+  <div class="settingsContainer" fxFlex="50%" fxFlex.md="70%" fxFlex.lt-md="100%">
+    <div *ngIf="moduleSchema && moduleConfig">
+  
+        <div class="settingsSection">
+            
+            <div class="settingsHeader">
+              <h2>Policy level</h2>
+            </div>
+  
+            <mat-card class="settingsCard levelSelectCard" fxLayout="column"> 
+              <div fxLayout="row wrap" fxLayout.xs="column">
+                <div class="levelSelectDescription" [ngStyle.xs]="{'line-height': '30px'}">
+                  Select the policy level you would like to edit:
+                </div>
+                <mat-form-field class="levelSelect">
+                  <mat-select [formControl]="policySelect" placeholder="Policy level">
+                    <mat-option value="Network">
+                      Network
+                    </mat-option>
+                    <mat-optgroup label="Groups" *ngIf="moduleConfig.group && moduleConfig.group.length > 0">
+                        <mat-option *ngFor="let group of moduleConfig.group" value="group.{{group.name}}">
+                          {{group.name}}
+                        </mat-option>
+                    </mat-optgroup>
+                    <mat-optgroup label="Addresses" *ngIf="moduleConfig.address.length > 0">
+                        <mat-option *ngFor="let address of moduleConfig.address" value="address.{{address.address}}">
+                          {{address.address}}
+                        </mat-option>
+                    </mat-optgroup>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row wrap" class="buttons">
+                <button mat-raised-button *ngIf="!(selectedGroup || selectedAddress)" (click)="addPolicyLevel()">
+                  Add new policy level
+                </button>
+                <button mat-raised-button *ngIf="selectedGroup">
+                  Edit {{selectedGroup.name}}
+                </button>
+                <button mat-raised-button *ngIf="selectedGroup || selectedAddress" (click)="deletePolicyLevel()">
+                  Delete {{selectedGroup ? selectedGroup.name : selectedAddress.address}}
+                </button>
+              </div>
+              <mat-divider [inset]="true" style="width:100%;" *ngIf="selectedGroup || selectedAddress"></mat-divider>
+              <div style="margin: 10px 0 10px 20px;" *ngIf="selectedGroup">
+                You have selected <b>{{selectedGroup.name}}</b><br>
+                Addresses in this group:<br>
+                <span *ngFor="let address of selectedGroup.members" style="padding-left: 5px;">{{address}}<br></span>
+              </div>
+              <div style="margin: 10px 0 10px 20px;" *ngIf="selectedAddress">
+                You have selected the IP address {{selectedAddress.address}}<br>
+              </div>
+            </mat-card>
+        </div>
+  
+        <div class="settingsSection" *ngIf="activePolicies">
+            
+          <div class="settingsHeader">
+            <h2>
+              Module configuration
+              <button
+                mat-raised-button
+                (click)="saveSettings()"
+                class="save-button">
+                Save
+              </button>
+            </h2>
+          </div>
+  
+          <mat-card class="settingsCard moduleFormCard">
+            <div *ngFor="let schema of moduleSchema" style="padding: 5px;">
+              <app-moduleform
+                #moduleForm
+                class="moduleForm"
+                [moduleSchema]="schema"
+                [modulePolicies]="activePolicies[schema.id] ? activePolicies[schema.id].policy_records : undefined"
+                [networkActive]="networkActive">
+              </app-moduleform>
+  
+              <mat-divider
+                class="divider"
+                [inset]="true">
+              </mat-divider>
+            </div>
+          </mat-card>
+        </div>
+  
+  
+    </div>
+  </div>
+</div>

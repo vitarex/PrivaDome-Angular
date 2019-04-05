@@ -1,0 +1,65 @@
+@import "src/theme/theme-variables";
+
+mat-panel-title,
+mat-panel-description {
+  font-size: 1.2em;
+}
+
+.settingsHeader {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.settingsHeader h2 {
+  margin-bottom: 8px;
+}
+
+.settingsCard {
+  padding: 0px;
+  padding-top: 10px;
+  border-radius: 8px;
+}
+
+.levelSelect {
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 200px;
+  margin-bottom: -0.5em;
+}
+
+.warnColor {
+  color: mat-color($app-accent);
+}
+
+.levelSelectDescription {
+  margin-left: 20px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+mat-card div:last-of-type .divider {
+  display: none;
+}
+
+.moduleFormCard {
+  padding: 10px 15px 10px 15px;
+  margin-bottom: 20px;
+}
+
+.divider {
+  margin-top: 10px !important;
+}
+
+.buttons {
+  margin: 10px 5px 5px 40px !important;
+}
+
+.buttons > button {
+  margin: 0 5px 5px 0;
+  color: mat-color($app-accent);
+}
+
+.save-button {
+  color: mat-color($app-accent);
+  margin-left: 30px;
+}

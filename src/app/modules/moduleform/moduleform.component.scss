@@ -1,0 +1,75 @@
+@import "src/theme/theme-variables";
+
+.form-row-content {
+  padding: 0;
+}
+
+.divider {
+  max-width: 400px;
+  margin-top: -15px !important;
+}
+
+.form-row {
+  margin-top: 5px;
+  margin-right: 15px;
+}
+
+.form-row:last-of-type .divider {
+  display: none;
+}
+
+.policy-wrapper:first-of-type {
+  margin-top: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.policy-wrapper:not(:first-of-type) {
+  padding-top: 5px;
+  margin: 10px 0 5px 0;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.time-select {
+  width: 80px;
+}
+
+.policy-add-button {
+  color: mat-color($app-accent);
+  margin-left: 20px;
+}
+
+.help-icon {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 150%;
+}
+
+.delete-icon-wrapper {
+  margin-left: auto;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.delete-icon {
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.4em;
+  cursor: pointer;
+}
+
+.checkbox-align {
+  align-self: flex-end;
+}
+
+.checkbox-wrapper {
+  padding-right: 10px;
+  margin-top: -0.5em;
+}
+
+::ng-deep .checkbox-formfield .mat-form-field-suffix {
+  top: 0.43em !important;
+}
+
+.options-wrapper:nth-child(2) {
+  margin-top: 10px;
+}

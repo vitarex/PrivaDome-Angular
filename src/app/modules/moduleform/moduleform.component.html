@@ -1,0 +1,189 @@
+<div>
+  <div>
+      <mat-slide-toggle [(ngModel)]="enabled"><b>{{moduleSchema.friendlyName}}</b></mat-slide-toggle>
+      <button class="policy-add-button" mat-raised-button *ngIf="enabled" (click)="addPolicy()">Add new policy</button>
+  </div>
+  
+  <div *ngIf="enabled">
+    <div
+        *ngFor="let formGroup of formGroups; let even = even; let odd = odd; let i = index"
+        class="policy-wrapper"
+        [ngClass]="{ odd: odd, even: even }">
+
+        <div class="policy-header" fxLayout="row">
+            <h3 style="margin: 5px 0 0 10px;">Policy #{{i+1}}</h3>
+    
+            <div class="delete-icon-wrapper">
+                <mat-icon class="delete-icon" (click)="deletePolicy(i)">
+                    delete_outline
+                </mat-icon>
+            </div>
+        </div>
+    
+        <mat-divider
+            [inset]="true">
+        </mat-divider>
+    
+        <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" style="padding: 0 0 5px 0;">
+    
+            <div style="padding: 5px 0 0 25px;">
+    
+                <div>
+                    <mat-form-field appearance="outline" style="margin-bottom: -1em">
+                        <mat-select id="day" formControlName="day" placeholder="Select days" multiple>
+                            <mat-option value="0">Monday</mat-option>
+                            <mat-option value="1">Tuesday</mat-option>
+                            <mat-option value="2">Wednesday</mat-option>
+                            <mat-option value="3">Thursday</mat-option>
+                            <mat-option value="4">Friday</mat-option>
+                            <mat-option value="5">Saturday</mat-option>
+                            <mat-option value="6">Sunday</mat-option>
+                        </mat-select>
+        
+                    </mat-form-field>
+                    <mat-icon class="help-icon" matTooltipPosition="right"
+                            matTooltip="Set the days the policy should be active. Multiple days allowed.">
+                        help_outline
+                    </mat-icon>
+                </div>
+    
+                <div>
+                    From
+                  <mat-form-field class="time-select" appearance="outline" style="margin-bottom: -1em">
+                      <mat-select id="startHour" formControlName="startHour" placeholder="HH">
+                          <mat-option value="0">00</mat-option>
+                          <mat-option value="1">01</mat-option>
+                          <mat-option value="2">02</mat-option>
+                          <mat-option value="3">03</mat-option>
+                          <mat-option value="4">04</mat-option>
+                          <mat-option value="5">05</mat-option>
+                          <mat-option value="6">06</mat-option>
+                          <mat-option value="7">07</mat-option>
+                          <mat-option value="8">08</mat-option>
+                          <mat-option value="9">09</mat-option>
+                          <mat-option value="10">10</mat-option>
+                          <mat-option value="11">11</mat-option>
+                          <mat-option value="12">12</mat-option>
+                          <mat-option value="13">13</mat-option>
+                          <mat-option value="14">14</mat-option>
+                          <mat-option value="15">15</mat-option>
+                          <mat-option value="16">16</mat-option>
+                          <mat-option value="17">17</mat-option>
+                          <mat-option value="18">18</mat-option>
+                          <mat-option value="19">19</mat-option>
+                          <mat-option value="20">20</mat-option>
+                          <mat-option value="21">21</mat-option>
+                          <mat-option value="22">22</mat-option>
+                          <mat-option value="23">23</mat-option>
+                          <mat-option value="24">24</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+      
+                  <mat-form-field class="time-select" appearance="outline" style="margin-bottom: -1em">
+                      <mat-select id="startMinute" formControlName="startMinute" placeholder="MM">
+                          <mat-option value="0">0</mat-option>
+                          <mat-option value="15">15</mat-option>
+                          <mat-option value="30">30</mat-option>
+                          <mat-option value="45">45</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+    
+                  <mat-icon class="help-icon" matTooltipPosition="right"
+                            matTooltip="Set the policy start time in hh:mm. Must be sooner than ending time.">
+                    help_outline
+                  </mat-icon>
+                </div>
+    
+                <div>
+                    To
+                  <mat-form-field class="time-select" appearance="outline" style="margin-bottom: -1em">
+                      <mat-select id="endHour" formControlName="endHour" placeholder="HH">
+                          <mat-option value="0">00</mat-option>
+                          <mat-option value="1">01</mat-option>
+                          <mat-option value="2">02</mat-option>
+                          <mat-option value="3">03</mat-option>
+                          <mat-option value="4">04</mat-option>
+                          <mat-option value="5">05</mat-option>
+                          <mat-option value="6">06</mat-option>
+                          <mat-option value="7">07</mat-option>
+                          <mat-option value="8">08</mat-option>
+                          <mat-option value="9">09</mat-option>
+                          <mat-option value="10">10</mat-option>
+                          <mat-option value="11">11</mat-option>
+                          <mat-option value="12">12</mat-option>
+                          <mat-option value="13">13</mat-option>
+                          <mat-option value="14">14</mat-option>
+                          <mat-option value="15">15</mat-option>
+                          <mat-option value="16">16</mat-option>
+                          <mat-option value="17">17</mat-option>
+                          <mat-option value="18">18</mat-option>
+                          <mat-option value="19">19</mat-option>
+                          <mat-option value="20">20</mat-option>
+                          <mat-option value="21">21</mat-option>
+                          <mat-option value="22">22</mat-option>
+                          <mat-option value="23">23</mat-option>
+                          <mat-option value="24">24</mat-option>
+                        </mat-select>
+                  </mat-form-field>
+      
+                  <mat-form-field class="time-select" appearance="outline" style="margin-bottom: -1em">
+                      <mat-select id="endMinute" formControlName="endMinute" placeholder="MM">
+                          <mat-option value="0">0</mat-option>
+                          <mat-option value="15">15</mat-option>
+                          <mat-option value="30">30</mat-option>
+                          <mat-option value="45">45</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+    
+                  <mat-icon class="help-icon" matTooltipPosition="right"
+                            matTooltip="Set the policy end time in hh:mm. Must be later than ending time.">
+                    help_outline
+                  </mat-icon>
+                </div>
+    
+            </div>
+    
+            <div *ngIf="!networkActive">
+                <mat-divider
+                    [inset]="true">
+                </mat-divider>
+        
+                <div style="margin: 10px 0 0 25px;">
+                    <mat-form-field appearance="outline" class="checkbox-formfield">
+                        <mat-label>Void upstream policies</mat-label>
+                        <div fxLayout="column" class="checkbox-wrapper">
+                            <mat-checkbox class="checkbox-align" formControlName="blocking"></mat-checkbox>
+                        </div>
+                        <input matInput placeholder="input" style="display: none;">
+                        <mat-icon class="help-icon"
+                                    matSuffix
+                                    matTooltipPosition="right"
+                                    matTooltip="Invalidates higher level policies. Useful for exempting specific clients from network level rules.">
+                            help_outline
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+      
+          <div *ngIf="!formGroup.value.blocking && moduleSchema.inputs" class="options-wrapper">
+    
+            <mat-divider
+                style="margin-top: -10px;"
+                [inset]="true">
+            </mat-divider>
+    
+            <h3 style="margin: 5px 0 0 10px;">Module options</h3>
+    
+              <div *ngFor="let form of forms" class="form-row" style="padding-left: 15px;">
+                <app-form class="form-row-content" [form]="form" [formGroup]="formGroup"></app-form>
+                <mat-divider
+                  class="divider"
+                  [inset]="true">
+                </mat-divider>
+              </div>
+          </div>
+        </form>
+    </div>
+
+  </div>
+</div>

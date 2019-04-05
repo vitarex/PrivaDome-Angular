@@ -1,0 +1,10 @@
+<mat-card id="chartTile"
+          fxLayout="column">
+
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle *ngIf="description">{{description}}</mat-card-subtitle>
+    <mat-card-content fxFlex>
+      <canvas id="canvas{{name}}" #canvas>{{ chart }}</canvas>
+    </mat-card-content>
+
+</mat-card>

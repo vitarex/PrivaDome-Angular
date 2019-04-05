@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Add policy level</h2>
+
+<div mat-dialog-content>
+  <mat-select [(ngModel)]="type" (selectionChange)="typeChanged($event)" placeholder="Level type">
+    <mat-option value="Group">Group</mat-option>
+    <mat-option value="Address">Address</mat-option>
+  </mat-select>
+  
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase="'Group'">
+      <form>
+        <mat-form-field>
+          <input matInput
+                 [formControl]="name"
+                 placeholder="Group name">
+          <mat-error *ngIf="name.invalid">Group name is required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput
+                 [formControl]="address"
+                 placeholder="Address to add">
+          <mat-error *ngIf="address.invalid">Invalid IP address.</mat-error>
+        </mat-form-field>
+  
+        <button mat-button (click)="addAddress()" [disabled]="address.invalid || address.value==''">
+          Add
+        </button>
+      </form>
+
+      <div *ngIf="addressList.length > 0" class="mat-typography">
+        Addresses in group
+        <ul>
+          <li *ngFor="let address of addressList">{{address}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <form *ngSwitchCase="'Address'">
+      <mat-form-field>
+        <input matInput
+               [formControl]="address"
+               placeholder="Address">
+        <mat-error *ngIf="address.invalid">Invalid IP address.</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+</div>
+
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  <button mat-button
+          [disabled]="type=='Group' ? ((name.invalid || name.value=='') || addressList.length < 1) : (address.invalid || address.value == '')"
+          (click)="closeDialog()">
+    Add policy level
+  </button>
+</mat-dialog-actions>

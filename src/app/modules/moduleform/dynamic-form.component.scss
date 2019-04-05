@@ -1,0 +1,30 @@
+.form-heading {
+  margin: 1px 8px 0 0;
+}
+
+.form-wrapper {
+  margin-left: 10px;
+}
+
+.description {
+  margin: 5px 5px 5px 10px;
+  color: #7e7e7e;
+  width: 250px;
+}
+
+.checkbox-align {
+  align-self: flex-end;
+}
+
+.checkbox-wrapper {
+  padding-right: 10px;
+  margin-top: -0.5em;
+}
+
+::ng-deep .checkbox-formfield .mat-form-field-suffix {
+  top: 0.43em !important;
+}
+
+.help-icon {
+  color: rgba(0, 0, 0, 0.6);
+}

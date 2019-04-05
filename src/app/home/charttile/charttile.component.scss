@@ -1,0 +1,31 @@
+.tile {
+  border-radius: 10px;
+}
+
+#chartTile {
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10px;
+  font-size: 150%;
+}
+
+mat-card-title {
+  margin: 20px 0 4px 20px;
+  padding-top: 20px;
+}
+
+mat-card-subtitle {
+  margin: 4px 0 4px 20px !important;
+}
+
+mat-card-content {
+  display: flex;
+  margin-right: -1px;
+}
+
+canvas {
+  border-radius: 10px;
+}

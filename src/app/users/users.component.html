@@ -1,0 +1,162 @@
+<div fxLayout="row" fxLayoutAlign="center" class="mat-typography">
+  <div class="settingsContainer" fxFlex="50%" fxFlex.md="70%" fxFlex.lt-md="100%">
+    <div class="settingsSection">
+      <div class="settingsHeader"><h2>Users</h2></div>
+
+      <mat-card fxFill class="settingsCard">
+        <div class="usersCard" *ngFor="let user of users">
+          <div class="userDetails">
+            <h2 class="userTitle">{{ user.username }}</h2>
+            <h3 class="userDescription">{{ user.email }}</h3>
+            <h3 class="userDescription warnColor" *ngIf="user.admin"><span translate>Admin</span></h3>
+            <h3 class="userDescription " *ngIf="!user.admin"><span translate>Standard User</span></h3>
+          </div>
+
+          <mat-expansion-panel class="updateExpansion" fxLayout="column">
+            <mat-expansion-panel-header class="updateHeader">
+              <mat-panel-description class="updateDescription"> <span translate>Edit</span> </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form (ngSubmit)="updateUser(user)" [formGroup]="userUpdateForm" novalidate>
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput formControlName="username" [placeholder]="'New username' | translate" />
+                  <mat-hint> <span translate>5-50 characters</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <mat-form-field>
+                  <input matInput formControlName="email" [placeholder]="'New email' | translate" />
+                  <mat-hint> <span translate>eg. example@example.com</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <mat-form-field>
+                  <input
+                    matInput
+                    type="password"
+                    formControlName="newPassword"
+                    [placeholder]="'New password' | translate"
+                  />
+                  <mat-hint> <span translate>8-16 characters</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <mat-form-field>
+                  <input
+                    matInput
+                    type="password"
+                    formControlName="oldPassword"
+                    [placeholder]="'Current password' | translate"
+                  />
+                  <mat-hint> <span translate>8-16 characters</span> </mat-hint>
+                  <mat-error *ngIf="userUpdateForm.controls.oldPassword.value == ''">
+                    <span translate>Current password is required</span>
+                  </mat-error>
+                </mat-form-field>
+                <br />
+
+                <div class="errorMessage" [hidden]="!updateError || updateLoading" translate>{{ updateError }}</div>
+
+                <div class="errorMessage" [hidden]="!deleteError || deleteLoading" translate>{{ deleteError }}</div>
+
+                <button
+                  mat-raised-button
+                  class="submitButton"
+                  color="primary"
+                  type="submit"
+                  [disabled]="userUpdateForm.invalid || updateLoading"
+                >
+                  <app-loader class="inline-loader" [isLoading]="updateLoading"></app-loader>
+                  <span translate>Update User</span>
+                </button>
+              </div>
+            </form>
+
+            <button
+              mat-raised-button
+              class="deleteButton"
+              (click)="deleteUser(user)"
+              color="accent"
+              [disabled]="errorLoading"
+            >
+              <app-loader class="inline-loader" [isLoading]="errorLoading"></app-loader>
+              <span translate>Delete User</span>
+            </button>
+          </mat-expansion-panel>
+        </div>
+
+        <div class="usersCard" *ngIf="isSuperuser">
+          <div class="userDetails"></div>
+
+          <mat-expansion-panel class="updateExpansion" fxLayout="column">
+            <mat-expansion-panel-header>
+              <mat-panel-description class="updateDescription"> <span translate>Add User</span> </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <form (ngSubmit)="createUser()" [formGroup]="userCreateForm" novalidate>
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput formControlName="username" [placeholder]="'Username' | translate" />
+                  <mat-hint> <span translate>5-50 characters</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <mat-form-field>
+                  <input matInput formControlName="email" [placeholder]="'Email' | translate" />
+                  <mat-hint> <span translate>eg. example@example.com</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <mat-form-field>
+                  <input matInput type="password" formControlName="password" [placeholder]="'Password' | translate" />
+                  <mat-hint> <span translate>8-16 characters</span> </mat-hint>
+                </mat-form-field>
+                <br />
+
+                <div class="errorMessage" [hidden]="!createError || createLoading" translate>{{ createError }}</div>
+
+                <button
+                  mat-raised-button
+                  class="submitButton"
+                  color="primary"
+                  type="submit"
+                  [disabled]="userCreateForm.invalid || createLoading"
+                >
+                  <app-loader class="inline-loader" [isLoading]="createLoading"></app-loader>
+                  <span translate>Add User</span>
+                </button>
+              </div>
+            </form>
+          </mat-expansion-panel>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="settingsSection">
+      <div class="settingsHeader"><h2>Settings</h2></div>
+
+      <mat-card class="settingsCard">
+        <mat-list>
+          <mat-list-item class="settingsItem">
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="100%" fxFlexAlign="center" class="settingsLine">Upstream DNS server:</div>
+              <mat-form-field style="width: 100px;"> <input matInput [value]="'8.8.8.8'" /> </mat-form-field>
+            </div>
+          </mat-list-item>
+          <mat-divider class="settingsDivider"></mat-divider>
+          <mat-list-item class="settingsItem">
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="100%" fxFlexAlign="center" class="settingsLine">System timezone:</div>
+              <mat-form-field>
+                <mat-select>
+                  <mat-option value="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</div>
